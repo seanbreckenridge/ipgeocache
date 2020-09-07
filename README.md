@@ -70,7 +70,7 @@ postal=94043
 timezone=America/Los_Angeles
 ```
 
-Also accessible like `python3 -m ipgeocache`
+Also accessible like `python -m ipgeocache`
 
 ### Installation
 
