@@ -45,12 +45,14 @@ ipgeocache.get(ip_address: str,
               cache_dir: Optional[str] = None,
               logger: Optional[logging.Logger] = None) -> Dict[str, Any]
 
+    """
     Get geolocation info for an IP address
 
     optional parameters:
     token: ipinfo token to use, if IPINFO_TOKEN not set as an environment variable
     cache_dir: directory to use for cache, overrides default (XDG_DATA_DIR/ipgeocache) if given
     logger: a logger to send cache hit/miss info out on
+    """
 ```
 
 ### Installation
