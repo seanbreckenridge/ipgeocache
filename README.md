@@ -55,6 +55,23 @@ ipgeocache.get(ip_address: str,
     """
 ```
 
+Also installs a basic `ipgeocache` script, which you can pass an IP address to:
+
+```
+$ ipgeocache 8.8.8.8
+ip=8.8.8.8
+hostname=dns.google
+city=Mountain View
+region=California
+country=US
+loc=37.4056,-122.0775
+org=AS15169 Google LLC
+postal=94043
+timezone=America/Los_Angeles
+```
+
+Also accessible like `python3 -m ipgeocache`
+
 ### Installation
 
 Requires `python3.6+`
