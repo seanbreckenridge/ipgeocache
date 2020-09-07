@@ -1,0 +1,65 @@
+## ipgeocache
+
+A small cache layer for geolocation info for IP addresses.
+
+For my own [random projects](https://github.com/seanbreckenridge/HPI), to get geolocation info for past IP addresses; so that I can easily do:
+
+```
+import ipgeocache
+ipgeocache.get("<some ip address>")
+```
+
+If that IP has been requested before, it returns the information from cache. Else, it requests out to <https://ipinfo.io>
+
+This requires you to get an access token from [here](https://ipinfo.io/signup), can do 50,000 lookups per month as long as you're using it for non-commercial projects.
+
+After setting the `IPINFO_TOKEN` environment variable:
+
+```
+>>> import ipgeocache, logzero
+>>> ipgeocache.get("8.8.8.8", logger=logzero.logger)["hostname"]
+[D 200906 17:56:31 __init__:62] Cache Miss: 8.8.8.8, requesting and writing to /home/sean/.local/share/ipgeocache/8.8.8.8
+'dns.google'
+
+>>> ipgeocache.get("8.8.8.8", logger=logzero.logger)["hostname"]
+[D 200906 17:56:35 __init__:58] Cache Hit: 8.8.8.8, reading /home/sean/.local/share/ipgeocache/8.8.8.8
+'dns.google'
+
+>>> ipgeocache.get("8.8.8.8")
+{'ip': '8.8.8.8',
+ 'hostname': 'dns.google',
+ 'city': 'Mountain View',
+ 'region': 'California',
+ 'country': 'US',
+ 'loc': '37.4056,-122.0775',
+ 'org': 'AS15169 Google LLC',
+ 'postal': '94043',
+ 'timezone': 'America/Los_Angeles'}
+```
+
+Purpose here is to just be a thin wrapper that caches this info, so I don't have to think about it.
+
+The full function signature is:
+
+```
+ipgeocache.get(ip_address: str,
+              token: Optional[str] = None,
+              cache_dir: Optional[str] = None,
+              logger: Optional[logging.Logger] = None) -> Dict[str, Any]
+
+    Get geolocation info for an IP address
+
+    optional parameters:
+    token: ipinfo token to use, if IPINFO_TOKEN not set as an environment variable
+    cache_dir: directory to use for cache, overrides default (XDG_DATA_DIR/ipgeocache) if given
+    logger: a logger to send cache hit/miss info out on
+```
+
+### Installation
+
+Requires `python3.6+`
+
+To install with pip, run:
+
+    pip install git+https://github.com/seanbreckenridge/ipgeocache
+
