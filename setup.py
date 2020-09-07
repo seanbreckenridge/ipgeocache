@@ -19,7 +19,12 @@ setup(
     license="MIT",
     packages=find_packages(include=["ipgeocache"]),
     install_requires=requirements,
-    keywords="",
+    keywords="ip cache geolocate",
+    entry_points = {
+        'console_scripts': [
+            "ipgeocache = ipgeocache.__main__:main"
+        ]
+    },
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python",
