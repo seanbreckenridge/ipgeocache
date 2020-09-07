@@ -1,8 +1,6 @@
 ## ipgeocache
 
-A small cache layer for geolocation info for IP addresses.
-
-For my own [random projects](https://github.com/seanbreckenridge/HPI), to get geolocation info for past IP addresses; so that I can easily do:
+A small cache layer for IP geolocation info.
 
 ```
 import ipgeocache
@@ -37,7 +35,7 @@ After setting the `IPINFO_TOKEN` environment variable:
  'timezone': 'America/Los_Angeles'}
 ```
 
-Purpose here is to just be a thin wrapper that caches this info, so I don't have to think about it.
+Purpose is to just be a thin wrapper that caches this info, so I don't have to think about it for my [random projects](https://github.com/seanbreckenridge/HPI#readme).
 
 The full function signature is:
 

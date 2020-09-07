@@ -13,7 +13,7 @@ setup(
     url="https://github.com/seanbreckenridge/ipgeocache",
     author="Sean Breckenridge",
     author_email="seanbrecke@gmail.com",
-    description=("""a small cache layer for geolocation info for IP addresses"""),
+    description=("""A small cache layer for IP geolocation info"""),
     long_description=long_description,
     long_description_content_type="text/markdown",
     license="MIT",
