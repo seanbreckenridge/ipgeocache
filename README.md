@@ -2,7 +2,7 @@
 
 A small cache layer for IP geolocation info.
 
-```
+```python
 import ipgeocache
 ipgeocache.get("<some ip address>")
 ```
@@ -13,7 +13,7 @@ This requires you to get an access token from [here](https://ipinfo.io/signup), 
 
 After setting the `IPINFO_TOKEN` environment variable:
 
-```
+```python
 >>> import ipgeocache, logzero
 >>> ipgeocache.get("8.8.8.8", logger=logzero.logger)["hostname"]
 [D 200906 17:56:31 __init__:62] Cache Miss: 8.8.8.8, requesting and writing to /home/sean/.local/share/ipgeocache/8.8.8.8
@@ -39,7 +39,7 @@ Purpose is to just be a thin wrapper that caches this info, so I don't have to t
 
 The full function signature is:
 
-```
+```python
 ipgeocache.get(ip_address: str,
               token: Optional[str] = None,
               cache_dir: Optional[str] = None,
