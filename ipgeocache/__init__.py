@@ -9,7 +9,6 @@ from functools import lru_cache
 
 import requests
 
-APP_NAME = __name__
 CACHE_DIR_NAME: str = "ipgeocache"
 BASE_URL: str = "https://ipinfo.io/{}"
 
