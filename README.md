@@ -58,16 +58,34 @@ ipgeocache.get(ip_address: str,
 Also installs a basic `ipgeocache` script, which you can pass an IP address to:
 
 ```
-$ ipgeocache 8.8.8.8
-ip=8.8.8.8
-hostname=dns.google
-city=Mountain View
-region=California
-country=US
-loc=37.4056,-122.0775
-org=AS15169 Google LLC
-postal=94043
-timezone=America/Los_Angeles
+$ ipgeocache --help
+Usage: ipgeocache [OPTIONS] IP
+
+  Gets geolocation information for an IP address
+
+  For example: 'ipgeocache 192.30.255.112'
+
+Options:
+  --ipinfo-token TEXT  Authentication token to use ipinfo API.
+                       Consult https://ipinfo.io/signup
+
+  --json               Print geolocation info as JSON
+  --help               Show this message and exit.
+```
+
+```
+$ ipgeocache --json 8.8.8.8
+{
+    "city": "Mountain View",
+    "country": "US",
+    "hostname": "dns.google",
+    "ip": "8.8.8.8",
+    "loc": "37.4056,-122.0775",
+    "org": "AS15169 Google LLC",
+    "postal": "94043",
+    "region": "California",
+    "timezone": "America/Los_Angeles"
+}
 ```
 
 Also accessible like `python -m ipgeocache`

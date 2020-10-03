@@ -10,7 +10,7 @@ from .printers import default_printer, json_printer
     help="Authentication token to use ipinfo API. Consult https://ipinfo.io/signup",
     envvar="IPINFO_TOKEN",
 )
-@click.option("--json", is_flag=True)
+@click.option("--json", is_flag=True, help="Print geolocation info as JSON")
 @click.argument("ip")
 def main(ip, ipinfo_token, json):
     """
