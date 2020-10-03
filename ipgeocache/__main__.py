@@ -15,8 +15,8 @@ def main(ip, ipinfo_token, json):
     IP is public internet protocol address to be geolocated
     """
     if ipinfo_token is None:
-        click.secho("Couldn't find the IPINFO_TOKEN environment variable!\n"
-                    "Set it on IPINFO_TOKEN or pass from CLI --ipinfo-token", fg="red")
+        click.secho("Could not find ipinfo access token!\n"
+                    "Set the IPINFO_TOKEN environment variable or pass the --ipinfo-token flag", fg="red")
         return
 
     printer = default_printer
