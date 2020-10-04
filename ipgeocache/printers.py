@@ -1,12 +1,14 @@
 import json
 
+import click
+
 from . import Json
 
 
-def default_printer(data: Json):
+def default_printer(data: Json) -> None:
     for k, v in data.items():
-        print(f"{k}={v}")
+        click.echo(f"{k}={v}")
 
 
-def json_printer(data: Json):
-    print(json.dumps(data, indent=4, sort_keys=True))
+def json_printer(data: Json) -> None:
+    click.echo(json.dumps(data, indent=4, sort_keys=True))

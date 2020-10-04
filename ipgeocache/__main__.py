@@ -1,5 +1,7 @@
 import click
 
+from typing import Optional
+
 from . import get as get_ip_info
 from .printers import default_printer, json_printer
 
@@ -12,7 +14,7 @@ from .printers import default_printer, json_printer
 )
 @click.option("--json", is_flag=True, help="Print geolocation info as JSON")
 @click.argument("ip")
-def main(ip, ipinfo_token, json):
+def main(ip: str, ipinfo_token: Optional[str], json: bool) -> None:
     """
     Gets geolocation information for an IP address
 

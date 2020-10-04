@@ -60,7 +60,8 @@ def get_from_cache_or_request(
     if cache_target.exists():
         if logger is not None:
             logger.debug("Cache Hit: {}, reading {}".format(ip_address, cache_target))
-        return json.loads(cache_target.read_text())
+        ipinfo: Json = json.loads(cache_target.read_text())
+        return ipinfo
     else:
         if logger is not None:
             logger.debug(
@@ -73,7 +74,7 @@ def get_from_cache_or_request(
             headers={"Authorization": "Bearer {}".format(ipinfo_token)},
         )
         resp.raise_for_status()
-        resp_json = resp.json()
+        resp_json: Json = resp.json()
         with cache_target.open("w") as jf:
             json.dump(resp_json, jf)
         return resp_json
