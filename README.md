@@ -1,5 +1,7 @@
 ## ipgeocache
 
+[![PyPi version](https://img.shields.io/pypi/v/ipgeocache.svg)](https://pypi.python.org/pypi/ipgeocache) [![Python 3.6|3.7|3.8](https://img.shields.io/pypi/pyversions/ipgeocache.svg)](https://pypi.python.org/pypi/ipgeocache) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
 A small cache layer for IP geolocation info.
 
 ```python
@@ -8,6 +10,16 @@ ipgeocache.get("<some ip address>")
 ```
 
 If that IP has been requested before, it returns the information from cache. Else, it requests out to <https://ipinfo.io>
+
+### Installation
+
+Requires `python3.6+`
+
+To install with pip, run:
+
+    pip install ipgeocache
+
+----
 
 This requires you to get an access token from [here](https://ipinfo.io/signup), can do 50,000 lookups per month as long as you're using it for non-commercial projects.
 
@@ -55,6 +67,8 @@ ipgeocache.get(ip_address: str,
     """
 ```
 
+----
+
 Also installs a basic `ipgeocache` script, which you can pass an IP address to:
 
 ```
@@ -89,12 +103,4 @@ $ ipgeocache --json 8.8.8.8
 ```
 
 Also accessible like `python -m ipgeocache`
-
-### Installation
-
-Requires `python3.6+`
-
-To install with pip, run:
-
-    pip install git+https://github.com/seanbreckenridge/ipgeocache
 
