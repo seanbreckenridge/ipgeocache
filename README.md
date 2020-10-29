@@ -19,7 +19,7 @@ To install with pip, run:
 
     pip install ipgeocache
 
-----
+---
 
 This requires you to get an access token from [here](https://ipinfo.io/signup), can do 50,000 lookups per month as long as you're using it for non-commercial projects.
 
@@ -67,7 +67,7 @@ ipgeocache.get(ip_address: str,
     """
 ```
 
-----
+---
 
 Also installs a basic `ipgeocache` script, which you can pass an IP address to:
 
@@ -103,4 +103,3 @@ $ ipgeocache --json 8.8.8.8
 ```
 
 Also accessible like `python -m ipgeocache`
-
