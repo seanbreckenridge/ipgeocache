@@ -7,9 +7,10 @@ requirements = ["requests", "click"]
 with io.open("README.md", encoding="utf-8") as fo:
     long_description = fo.read()
 
+pkg = "ipgeocache"
 setup(
-    name="ipgeocache",
-    version="0.1.0",
+    name=pkg,
+    version="0.1.1",
     url="https://github.com/seanbreckenridge/ipgeocache",
     author="Sean Breckenridge",
     author_email="seanbrecke@gmail.com",
@@ -17,7 +18,8 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     license="MIT",
-    packages=find_packages(include=["ipgeocache"]),
+    packages=find_packages(include=[pkg]),
+    package_data={pkg: ["py.typed"]},
     install_requires=requirements,
     keywords="ip cache geolocate",
     entry_points={"console_scripts": ["ipgeocache = ipgeocache.__main__:main"]},
