@@ -19,8 +19,6 @@ To install with pip, run:
 
     pip install ipgeocache
 
----
-
 This requires you to get an access token from [here](https://ipinfo.io/signup), can do 50,000 lookups per month as long as you're using it for non-commercial projects.
 
 After setting the `IPINFO_TOKEN` environment variable:
@@ -66,8 +64,6 @@ ipgeocache.get(ip_address: str,
     logger: a logger to send cache hit/miss info out on
     """
 ```
-
----
 
 Also installs a basic `ipgeocache` script, which you can pass an IP address to:
 
