@@ -65,6 +65,10 @@ ipgeocache.get(ip_address: str,
     """
 ```
 
+To change where this stores IP info, you can set the `IPGEOCACHE_DIR` environment variable.
+
+## CLI
+
 Also installs a basic `ipgeocache` script, which you can pass an IP address to:
 
 ```

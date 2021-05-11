@@ -10,7 +10,7 @@ with io.open("README.md", encoding="utf-8") as fo:
 pkg = "ipgeocache"
 setup(
     name=pkg,
-    version="0.1.1",
+    version="0.1.3",
     url="https://github.com/seanbreckenridge/ipgeocache",
     author="Sean Breckenridge",
     author_email="seanbrecke@gmail.com",

@@ -15,26 +15,29 @@ BASE_URL: str = "https://ipinfo.io/{}"
 Json = Dict[str, Any]
 
 
+USER_DATA_DIR: str = os.environ.get(
+    "XDG_DATA_HOME", os.path.join(os.environ["HOME"], ".local", "share")
+)
+
+
 @lru_cache(1)
 def get_cache_dir(passed_cache: Optional[str] = None) -> Path:
     """
-    Uses the cache directory given by the user, else uses the default location
+    Uses the cache directory given by the user,
+    $IPGEOCACHE_DIR, else uses the default location
     """
-    if passed_cache is None:
-        # use XDG dir, else ~/.local/share/
-        data_dir: str = os.environ.get(
-            "XDG_DATA_HOME", os.path.join(os.environ["HOME"], ".local", "share")
-        )
-        def_p = Path(data_dir).expanduser().absolute() / CACHE_DIR_NAME
-        if not def_p.exists():
-            def_p.mkdir(parents=True)
-        return def_p
+    loc: Path
+    if passed_cache is not None:
+        loc = Path(passed_cache)
+    elif "IPGEOCACHE_DIR" in os.environ:
+        loc = Path(os.environ["IPGEOCACHE_DIR"])
     else:
-        user_p: Path = Path(passed_cache).expanduser().absolute()
-        if not user_p.exists():
-            warnings.warn(f"{user_p} cache dir doesn't exist, creating...")
-            user_p.mkdir(parents=True)
-        return user_p
+        loc = Path(USER_DATA_DIR) / CACHE_DIR_NAME
+    locabs: Path = Path(loc).expanduser().absolute()
+    if not locabs.exists():
+        warnings.warn(f"{locabs} cache dir doesn't exist, creating...")
+        locabs.mkdir(parents=True)
+    return locabs
 
 
 def get_token(token: Optional[str] = None) -> str:
