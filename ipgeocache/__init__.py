@@ -1,10 +1,11 @@
 import os
+import re
 import json
 import warnings
 import logging
 
 from pathlib import Path
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, Tuple
 from functools import lru_cache
 
 import requests
@@ -53,25 +54,44 @@ def get_token(token: Optional[str] = None) -> str:
         return ""
 
 
+SAFE_FILENAMES_PAT = re.compile(r"[:.]")
+
+
+def _slugify_ip(ip: str) -> str:
+    return re.sub(SAFE_FILENAMES_PAT, "_", ip)
+
+
+def get_from_cache(
+    ip_address: str, cache_dir: Path, logger: Optional[logging.Logger]
+) -> Tuple[Path, Optional[Json]]:
+    """
+    Return the expected cache path, and any data if it exists
+    """
+    cache_target: Path
+    cache_target = cache_dir / ip_address
+    # if that file doesn't exist, slugify the name and return that
+    if not cache_target.exists():
+        cache_target = cache_dir / _slugify_ip(ip_address)
+    if cache_target.exists():
+        if logger is not None:
+            logger.debug("Cache Hit: {}, reading {}".format(ip_address, cache_target))
+        ipinfo: Json = json.loads(cache_target.read_text())
+        return cache_target, ipinfo
+    return cache_target, None
+
+
 def get_from_cache_or_request(
     ip_address: str,
     ipinfo_token: str,
     cache_dir: Path,
     logger: Optional[logging.Logger],
 ) -> Json:
-    cache_target: Path = cache_dir / ip_address.strip()
-    if cache_target.exists():
-        if logger is not None:
-            logger.debug("Cache Hit: {}, reading {}".format(ip_address, cache_target))
-        ipinfo: Json = json.loads(cache_target.read_text())
+    cache_target, ipinfo = get_from_cache(ip_address, cache_dir, logger)
+    if ipinfo is not None:
         return ipinfo
     else:
         if logger is not None:
-            logger.debug(
-                "Cache Miss: {}, requesting and writing to {}".format(
-                    ip_address, cache_target
-                )
-            )
+            logger.debug(f"Cache Miss: {ip_address}, requesting...")
         resp = requests.get(
             BASE_URL.format(ip_address),
             headers={"Authorization": "Bearer {}".format(ipinfo_token)},
