@@ -72,7 +72,6 @@ To change where this stores IP info, you can set the `IPGEOCACHE_DIR` environmen
 Also installs a basic `ipgeocache` script, which you can pass an IP address to:
 
 ```
-$ ipgeocache --help
 Usage: ipgeocache [OPTIONS] IP
 
   Gets geolocation information for an IP address
@@ -80,10 +79,9 @@ Usage: ipgeocache [OPTIONS] IP
   For example: 'ipgeocache 192.30.255.112'
 
 Options:
-  --ipinfo-token TEXT  Authentication token to use ipinfo API.
-                       Consult https://ipinfo.io/signup
-
-  --json               Print geolocation info as JSON
+  --ipinfo-token TEXT  Authentication token to use ipinfo API. Consult
+                       https://ipinfo.io/signup
+  -j, --json           Print geolocation info as JSON
   --help               Show this message and exit.
 ```
 

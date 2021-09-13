@@ -12,8 +12,8 @@ from .printers import default_printer, json_printer
     help="Authentication token to use ipinfo API. Consult https://ipinfo.io/signup",
     envvar="IPINFO_TOKEN",
 )
-@click.option("--json", is_flag=True, help="Print geolocation info as JSON")
-@click.argument("ip")
+@click.option("-j", "--json", is_flag=True, help="Print geolocation info as JSON")
+@click.argument("IP")
 def main(ip: str, ipinfo_token: Optional[str], json: bool) -> None:
     """
     Gets geolocation information for an IP address
