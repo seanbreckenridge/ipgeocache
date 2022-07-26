@@ -17,7 +17,7 @@ Json = Dict[str, Any]
 
 
 USER_DATA_DIR: str = os.environ.get(
-    "XDG_DATA_HOME", os.path.join(os.environ["HOME"], ".local", "share")
+    "XDG_DATA_HOME", os.path.join(os.path.expanduser("~"), ".local", "share")
 )
 
 
